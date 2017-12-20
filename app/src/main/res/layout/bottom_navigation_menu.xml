@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomNavigationView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:theme="@style/AppTheme.PopupOverlay">
+
+        <ImageButton
+            android:id="@+id/ibHome"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_home"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat"
+            tools:targetApi="O" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova"
+            android:text="@string/text_home"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ibHome"
+            app:layout_constraintStart_toStartOf="@+id/ibHome"
+            app:layout_constraintTop_toBottomOf="@+id/ibHome"
+            tools:targetApi="O" />
+
+        <ImageButton
+            android:id="@+id/ibBrowse"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_browse"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/ibHome"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat"
+            tools:targetApi="O" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova"
+            android:text="@string/text_browse"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ibBrowse"
+            app:layout_constraintStart_toStartOf="@+id/ibBrowse"
+            app:layout_constraintTop_toBottomOf="@+id/ibBrowse"
+            tools:targetApi="O" />
+
+        <ImageButton
+            android:id="@+id/ibSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_search"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/ibBrowse"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat"
+            tools:targetApi="O" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova"
+            android:text="@string/text_search"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ibSearch"
+            app:layout_constraintStart_toStartOf="@+id/ibSearch"
+            app:layout_constraintTop_toBottomOf="@+id/ibSearch"
+            tools:targetApi="O" />
+
+        <ImageButton
+            android:id="@+id/ibRadio"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_radio"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/ibSearch"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat"
+            tools:targetApi="O" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova"
+            android:text="@string/text_radio"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ibRadio"
+            app:layout_constraintStart_toStartOf="@+id/ibRadio"
+            app:layout_constraintTop_toBottomOf="@+id/ibRadio"
+            tools:targetApi="O" />
+
+        <ImageButton
+            android:id="@+id/ibLibrary"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_library"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/ibRadio"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat"
+            tools:targetApi="O" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova"
+            android:text="@string/text_library"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ibLibrary"
+            app:layout_constraintStart_toStartOf="@+id/ibLibrary"
+            app:layout_constraintTop_toBottomOf="@+id/ibLibrary"
+            tools:targetApi="O" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.BottomNavigationView>

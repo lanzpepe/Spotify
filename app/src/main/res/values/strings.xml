@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Top Hits Philippines</string>
+    <string name="text_bullet">&#8226;</string>
+    <string name="text_dots">Dots</string>
+    <string name="text_shuffle">Shuffle Play</string>
+    <string name="text_home">Home</string>
+    <string name="text_browse">Browse</string>
+    <string name="text_search">Search</string>
+    <string name="text_radio">Radio</string>
+    <string name="text_library">Your Library</string>
+</resources>
