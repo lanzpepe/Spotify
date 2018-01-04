@@ -93,7 +93,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="410dp"
         android:background="@color/colorPrimaryDark"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -112,6 +112,8 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/fragment_music"/>
 
     <include layout="@layout/bottom_navigation_menu"/>
 

@@ -7,9 +7,9 @@ import android.os.Parcelable
  * Created by Jess on 12/19/2017.
  */
 data class SongInfo (
-        var name: String = "",
-        var singer: String = "",
-        var album: String = ""
+        var name: String,
+        var singer: String,
+        var album: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),

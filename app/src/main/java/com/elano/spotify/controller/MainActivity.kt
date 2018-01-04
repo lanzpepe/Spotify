@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mSongs = ArrayList()
-        mAdapter = SongAdapter(this, mSongs)
+        mAdapter = SongAdapter(mSongs)
         setSupportActionBar(toolbar)
         initCollapsingToolbar()
         recyclerViewInit()

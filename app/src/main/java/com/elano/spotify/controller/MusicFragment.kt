@@ -1,10 +1,12 @@
 package com.elano.spotify.controller
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
@@ -18,33 +20,21 @@ import kotlinx.android.synthetic.main.fragment_music.view.*
  */
 class MusicFragment : Fragment() {
 
-    private lateinit var mSongList: ArrayList<String>
-    private lateinit var mSingerList: ArrayList<String>
-    private var position = 0
-
-    companion object {
-        val KEY_SONG = "key-song"
-        val KEY_SINGER = "key-singer"
-    }
+    private lateinit var mTvSongPlay: TextView
+    private lateinit var mTvSingerPlay: TextView
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        if (savedInstanceState != null) {
-            mSongList = savedInstanceState.getStringArrayList(KEY_SONG)
-            mSingerList = savedInstanceState.getStringArrayList(KEY_SINGER)
-        }
-
+        setViews()
+        mTvSongPlay.text = arguments.getString(SongAdapter.KEY_SONG)
+        mTvSingerPlay.text = arguments.getString(SongAdapter.KEY_SINGER)
         // Inflate the layout for this fragment
-        return  inflater!!.inflate(R.layout.fragment_music, container, false)
+        return inflater!!.inflate(R.layout.fragment_music, container, false)
     }
 
-    fun setSongList(songList: ArrayList<String>) {
-        this.mSongList = songList
-    }
-
-    fun setSingerList(singerList: ArrayList<String>) {
-        this.mSingerList = singerList
+    private fun setViews() {
+        mTvSongPlay = tvSongPlay
+        mTvSingerPlay = tvSingerPlay
     }
 
 }// Required empty public constructor
