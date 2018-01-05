@@ -8,7 +8,7 @@
     android:layout_marginBottom="76dp"
     android:background="@color/colorPrimary"
     android:padding="5dp"
-    android:visibility="gone">
+    android:visibility="invisible">
 
     <Button
         android:id="@+id/btnUp"

@@ -22,11 +22,11 @@ class MusicFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val songInfo = this.arguments.getParcelable(SongAdapter.SONG_DATA) as SongInfo
+        val song = arguments.getParcelable(SongAdapter.SONG_DATA) as SongInfo
 
         setViews()
-        mTvSongPlay.text = songInfo.name
-        mTvSingerPlay.text = songInfo.singer
+        mTvSongPlay.text = song.name
+        mTvSingerPlay.text = song.singer
 
         // Inflate the layout for this fragment
         return inflater!!.inflate(R.layout.fragment_music, container, false)

@@ -7,11 +7,13 @@ import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
 import com.elano.spotify.view.RecyclerTouchListener
 import com.elano.spotify.view.SongAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_music.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,17 +66,18 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addOnItemTouchListener(RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
 
             override fun onClick(view: View, position: Int) {
+                val mFragment = fragment
                 val songInfo = mSongs[position]
                 val bundle = Bundle()
 
                 bundle.putParcelable(SongAdapter.SONG_DATA, songInfo)
                 val musicFragment = MusicFragment()
                 musicFragment.arguments = bundle
-                musicFragment.setMenuVisibility(true)
+                mFragment.visibility = View.VISIBLE
             }
 
             override fun onLongClick(view: View, position: Int) {
-                TODO("not implemented")
+                Toast.makeText(this@MainActivity, "Not Available", Toast.LENGTH_SHORT).show()
             }
         }))
     }
