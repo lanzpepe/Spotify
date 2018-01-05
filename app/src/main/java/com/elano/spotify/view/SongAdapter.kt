@@ -1,5 +1,6 @@
 package com.elano.spotify.view
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -19,13 +20,6 @@ class SongAdapter(private val songList: ArrayList<SongInfo>) : RecyclerView.Adap
         holder!!.tvName.text = songList[position].name
         holder.tvSinger.text = songList[position].singer
         holder.tvAlbum.text = songList[position].album
-        holder.container.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString(KEY_SONG, songList[position].name)
-            bundle.putString(KEY_SINGER, songList[position].singer)
-            val musicFragment = MusicFragment()
-            musicFragment.arguments = bundle
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder =
@@ -41,7 +35,6 @@ class SongAdapter(private val songList: ArrayList<SongInfo>) : RecyclerView.Adap
     }
 
     companion object {
-        val KEY_SONG = "key-song"
-        val KEY_SINGER = "key-singer"
+        val SONG_DATA = "key-song"
     }
 }

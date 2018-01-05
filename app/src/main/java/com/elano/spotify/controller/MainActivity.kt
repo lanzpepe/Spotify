@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
+import com.elano.spotify.view.RecyclerTouchListener
 import com.elano.spotify.view.SongAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -59,6 +61,22 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = mAdapter
+        recyclerView.addOnItemTouchListener(RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
+
+            override fun onClick(view: View, position: Int) {
+                val songInfo = mSongs[position]
+                val bundle = Bundle()
+
+                bundle.putParcelable(SongAdapter.SONG_DATA, songInfo)
+                val musicFragment = MusicFragment()
+                musicFragment.arguments = bundle
+                musicFragment.setMenuVisibility(true)
+            }
+
+            override fun onLongClick(view: View, position: Int) {
+                TODO("not implemented")
+            }
+        }))
     }
 
     private fun prepareSongData() {
