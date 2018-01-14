@@ -29,8 +29,4 @@ class SongAdapter(private val songList: ArrayList<SongInfo>) : RecyclerView.Adap
         val tvSinger = view.tvSingerHolder!!
         val tvAlbum = view.tvAlbumHolder!!
     }
-
-    companion object {
-        val SONG_DATA = "key-song"
-    }
 }
