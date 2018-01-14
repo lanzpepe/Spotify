@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addOnItemTouchListener(RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
 
             override fun onClick(view: View, position: Int) {
-                val fragmentContainer = fragment
-                val musicFragment = MusicFragment()
+                val fragmentContainer = fragment; val musicFragment = MusicFragment()
                 val bundle = Bundle()
 
                 bundle.putParcelable(SONG_DATA, mSongList[position])
                 musicFragment.arguments = bundle
+                view.isSelected = true
                 stopPlaying()
                 mMediaPlayer = MediaPlayer.create(this@MainActivity, mSongList[position].id)
                 mMediaPlayer!!.start()
