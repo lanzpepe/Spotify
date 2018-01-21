@@ -7,7 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 
 /**
- * Created by Storm-2 on 1/5/2018.
+ * Created by Jess on 1/5/2018.
  */
 class RecyclerTouchListener(context: Context, recyclerView: RecyclerView, private val clickListener: ClickListener) : RecyclerView.OnItemTouchListener {
 

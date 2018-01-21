@@ -2,7 +2,7 @@
     <string name="app_name">Spotify</string>
     <string name="text_heading">Top Hits Philippines</string>
     <string name="text_bullet">&#8226;</string>
-    <string name="text_dots">Dots</string>
+    <string name="image_dots">Dots</string>
     <string name="text_shuffle">Shuffle Play</string>
     <string name="text_home">Home</string>
     <string name="text_browse">Browse</string>
