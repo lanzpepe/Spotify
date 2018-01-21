@@ -14,7 +14,7 @@
         android:background="@drawable/ic_arrow_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seekBar"
         tools:ignore="RtlCompat" />
 
     <TextView
@@ -26,8 +26,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvDotPlay"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/btnUp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnUp"
+        app:layout_constraintTop_toTopOf="@+id/seekBar"
         tools:ignore="RtlCompat"
         tools:text="I Like Me Better" />
 
@@ -42,8 +42,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvSingerPlay"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/tvSongPlay"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvSongPlay"
+        app:layout_constraintTop_toTopOf="@+id/seekBar"
         tools:ignore="RtlCompat"
         tools:text="@string/text_bullet" />
 
@@ -55,8 +55,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnPlay"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/tvDotPlay"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvDotPlay"
+        app:layout_constraintTop_toTopOf="@+id/seekBar"
         tools:ignore="RtlCompat"
         tools:text="Lauv" />
 
@@ -69,7 +69,15 @@
         android:background="@drawable/ic_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seekBar"
         tools:ignore="RtlCompat" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
