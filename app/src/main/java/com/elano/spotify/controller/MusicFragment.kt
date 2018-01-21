@@ -51,7 +51,7 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
             mMediaPlayer?.prepare()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
-        } catch (e: IllegalArgumentException) {
+        } catch (e: IllegalStateException) {
             e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
