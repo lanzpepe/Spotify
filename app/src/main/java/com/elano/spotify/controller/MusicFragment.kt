@@ -1,5 +1,6 @@
 package com.elano.spotify.controller
 
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -42,6 +43,7 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         setViews(rootView)
 
         mMediaPlayer = MediaPlayer()
+        songProgressBar?.progressDrawable?.setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN)
         songProgressBar?.progress = 0
 
         try {
@@ -83,13 +85,13 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         if (mMediaPlayer!!.isPlaying) {
             mMediaPlayer?.pause()
             updateProgressBar()
-            view?.setBackgroundResource(R.drawable.ic_pause)
+            view?.setBackgroundResource(R.drawable.ic_play_circle_outline_black_24dp)
         }
         else {
             mMediaPlayer?.seekTo(mMediaPlayer!!.currentPosition)
             mMediaPlayer?.start()
             updateProgressBar()
-            view?.setBackgroundResource(R.drawable.ic_play)
+            view?.setBackgroundResource(R.drawable.ic_pause_circle_outline_black_24dp)
         }
     }
 
@@ -110,9 +112,13 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
             mMediaPlayer?.seekTo(progress)
     }
 
-    override fun onStartTrackingTouch(seekBar: SeekBar?) { return }
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        return
+    }
 
-    override fun onStopTrackingTouch(seekBar: SeekBar?) { return }
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+        return
+    }
 
     override fun onDestroy() {
         super.onDestroy()
