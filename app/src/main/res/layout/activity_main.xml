@@ -94,40 +94,26 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_anchor="@+id/scrollView"
+        app:layout_anchor="@+id/recyclerView"
         app:layout_anchorGravity="top|center"/>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginTop="25dp"
         android:background="@color/colorPrimaryDark"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:scrollbars="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:padding="5dp"
         android:visibility="gone" />

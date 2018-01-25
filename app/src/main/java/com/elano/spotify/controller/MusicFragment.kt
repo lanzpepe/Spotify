@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,25 +14,27 @@ import android.widget.SeekBar
 import android.widget.TextView
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
+import kotlinx.android.synthetic.main.fragment_music.*
 import kotlinx.android.synthetic.main.fragment_music.view.*
 import java.io.IOException
 
 /**
  * A simple [Fragment] subclass.
  */
-class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener,
-        SeekBar.OnSeekBarChangeListener {
+class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedListener,
+        MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
     private lateinit var mTvSongPlay: TextView
     private lateinit var mTvSingerPlay: TextView
     private lateinit var mBtnPlay: Button
-    private lateinit var mRunnable: Runnable
-    private var songProgressBar: SeekBar? = null
     private var mHandler: Handler? = null
     private var mMediaPlayer: MediaPlayer? = null
+    private var mRunnable: Runnable? = null
+    private var songProgressBar: SeekBar? = null
 
     companion object {
-        const val UPDATE_FREQUENCY: Long = 1000
+        const val UPDATE_FREQUENCY: Long = 100
+        const val TAG = "MusicFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -41,11 +44,10 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         val song = arguments.getParcelable(MainActivity.SONG_DATA) as SongInfo
 
         setViews(rootView)
-
+        mHandler = Handler()
         mMediaPlayer = MediaPlayer()
         songProgressBar?.progressDrawable?.setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN)
         songProgressBar?.progress = 0
-
         try {
             if (mMediaPlayer!!.isPlaying)
                 mMediaPlayer?.reset()
@@ -58,12 +60,11 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
         mTvSongPlay.text = song.name
         mTvSingerPlay.text = song.singer
-
         mBtnPlay.setOnClickListener(this)
         mMediaPlayer?.setOnPreparedListener(this)
+        mMediaPlayer?.setOnCompletionListener(this)
         songProgressBar?.setOnSeekBarChangeListener(this)
 
         return rootView
@@ -71,40 +72,36 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
 
     private fun updateProgressBar() {
         songProgressBar?.progress = mMediaPlayer!!.currentPosition
-
         if (mMediaPlayer!!.isPlaying) {
             mRunnable = Runnable {
                 updateProgressBar()
             }
         }
-
         mHandler?.postDelayed(mRunnable, UPDATE_FREQUENCY)
     }
 
     override fun onClick(view: View?) {
         if (mMediaPlayer!!.isPlaying) {
             mMediaPlayer?.pause()
-            updateProgressBar()
-            view?.setBackgroundResource(R.drawable.ic_play_circle_outline_black_24dp)
+            setPlayImage(view)
         }
         else {
             mMediaPlayer?.seekTo(mMediaPlayer!!.currentPosition)
             mMediaPlayer?.start()
-            updateProgressBar()
-            view?.setBackgroundResource(R.drawable.ic_pause_circle_outline_black_24dp)
+            setPauseImage(view)
         }
+        songProgressBar?.progress = mMediaPlayer!!.currentPosition
     }
 
     override fun onPrepared(mediaPlayer: MediaPlayer?) {
         mMediaPlayer?.start()
+        setPauseImage(btnPlayPause)
         songProgressBar?.max = mMediaPlayer!!.duration
         updateProgressBar()
     }
 
     override fun onCompletion(mediaPlayer: MediaPlayer?) {
-        mHandler?.removeCallbacks(mRunnable)
-        mMediaPlayer?.release()
-        mMediaPlayer = null
+        setPlayImage(btnPlayPause)
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -113,18 +110,25 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {
-        return
+        Log.e(TAG, "Progress: ${seekBar?.progress}")
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
-        return
+        Log.e(TAG, "Progress: ${seekBar?.progress}")
+    }
+
+    private fun setPlayImage(view: View?) {
+        view?.setBackgroundResource(R.drawable.ic_play)
+    }
+
+    private fun setPauseImage(view: View?) {
+        view?.setBackgroundResource(R.drawable.ic_pause)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mHandler?.removeCallbacks(mRunnable)
         mMediaPlayer?.stop()
-        mMediaPlayer?.reset()
         mMediaPlayer?.release()
         mMediaPlayer = null
     }
@@ -132,12 +136,8 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
     private fun setViews(view: View) {
         mTvSongPlay = view.tvSongPlay
         mTvSingerPlay = view.tvSingerPlay
-        mBtnPlay = view.btnPlay
+        mBtnPlay = view.btnPlayPause
         songProgressBar = view.seekBar
-    }
-
-    fun setHandler(handler: Handler?) {
-        this.mHandler = handler
     }
 
 }// Required empty public constructor

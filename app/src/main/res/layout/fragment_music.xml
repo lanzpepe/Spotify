@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize">
+    android:layout_height="60dp">
 
     <Button
         android:id="@+id/btnUp"
@@ -11,7 +11,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:layout_weight="0"
-        android:background="@drawable/ic_expand_less_black_24dp"
+        android:background="@drawable/ic_expand_less"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/seekBar"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlayPause"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/tvDotPlay"
         app:layout_constraintTop_toTopOf="@+id/seekBar"
@@ -61,20 +61,20 @@
         tools:text="Lauv" />
 
     <Button
-        android:id="@+id/btnPlay"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/btnPlayPause"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginEnd="10dp"
         android:layout_weight="0"
-        android:background="@drawable/ic_pause_circle_outline_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/seekBar"
+        tools:background="@drawable/ic_play"
         tools:ignore="RtlCompat" />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:thumb="@null"
         app:layout_constraintEnd_toEndOf="parent"

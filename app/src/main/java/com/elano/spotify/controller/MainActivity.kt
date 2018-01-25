@@ -7,12 +7,12 @@ import android.database.Cursor
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.elano.spotify.R
@@ -27,7 +27,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAdapter: SongAdapter
     private lateinit var mFragmentManager: FragmentManager
     private lateinit var mSongCursor: Cursor
-    private lateinit var mHandler: Handler
+    private lateinit var mRecyclerView: RecyclerView
+
+    companion object {
+        const val SONG_DATA = "key-song-data"
+        const val REQUEST_CODE_PERMISSION = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         mFragmentManager = supportFragmentManager
         mSongList = ArrayList()
         mAdapter = SongAdapter(mSongList)
-        mHandler = Handler()
+        mRecyclerView = recyclerView
         mTvHeading.text = getString(R.string.text_heading)
         setSupportActionBar(toolbar)
         recyclerViewInit()
@@ -45,26 +50,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun recyclerViewInit() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = mAdapter
-        recyclerView.addOnItemTouchListener(RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.itemAnimator = DefaultItemAnimator()
+        mRecyclerView.adapter = mAdapter
+        mRecyclerView.addOnItemTouchListener(RecyclerTouchListener(this, object : RecyclerTouchListener.ClickListener {
 
             override fun onClick(view: View, position: Int) {
-                val fragmentContainer = fragment; val musicFragment = MusicFragment()
+                val fragmentContainer = fragment
+                val musicFragment = MusicFragment()
                 val bundle = Bundle()
 
                 bundle.putParcelable(SONG_DATA, mSongList[position])
                 musicFragment.arguments = bundle
-                musicFragment.setHandler(mHandler)
-                view.isSelected = true
                 mFragmentManager.beginTransaction().replace(R.id.fragment, musicFragment).commit()
+                view.isSelected = true
                 fragmentContainer.visibility = View.VISIBLE
-            }
-
-            override fun onLongClick(view: View, position: Int) {
-                Toast.makeText(this@MainActivity, "Not Available", Toast.LENGTH_SHORT).show()
             }
         }))
     }
@@ -73,8 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun prepareSongData() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_PERMISSION)
-        }
-        else {
+        } else {
             mSongCursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, null)
             while (mSongCursor.moveToNext()) {
                 val data = mSongCursor.getString(mSongCursor.getColumnIndex(MediaStore.Audio.Media.DATA))
@@ -92,10 +92,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
             prepareSongData()
         }
-    }
-
-    companion object {
-        const val SONG_DATA = "key-song-data"
-        const val REQUEST_CODE_PERMISSION = 1
     }
 }
