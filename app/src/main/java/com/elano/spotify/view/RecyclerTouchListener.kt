@@ -9,23 +9,23 @@ import android.view.View
 /**
  * Created by Jess on 1/5/2018.
  */
-class RecyclerTouchListener(context: Context, private val clickListener: ClickListener) : RecyclerView.OnItemTouchListener {
+class RecyclerTouchListener(context: Context?, clickListener: ClickListener?) : RecyclerView.OnItemTouchListener {
 
-    private val mContext = context
+    private val mContext = context; private val mClickListener = clickListener
 
     private val gestureDetector = GestureDetector(mContext, object : GestureDetector.SimpleOnGestureListener() {
-
         override fun onSingleTapUp(e: MotionEvent?): Boolean = true
-
     })
 
     override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {}
 
     override fun onInterceptTouchEvent(rv: RecyclerView?, e: MotionEvent?): Boolean {
-        val child = rv!!.findChildViewUnder(e!!.x, e.y)
+        val child = rv?.findChildViewUnder(e!!.x, e.y)
 
-        if (child != null && gestureDetector.onTouchEvent(e))
-            clickListener.onClick(child, rv.getChildAdapterPosition(child))
+        if (mClickListener != null && child != null && gestureDetector.onTouchEvent(e)) {
+            mClickListener.onClick(child, rv.getChildAdapterPosition(child))
+            return true
+        }
 
         return false
     }

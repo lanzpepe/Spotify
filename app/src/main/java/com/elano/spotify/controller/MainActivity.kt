@@ -57,14 +57,13 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView.addOnItemTouchListener(RecyclerTouchListener(this, object : RecyclerTouchListener.ClickListener {
 
             override fun onClick(view: View, position: Int) {
-                val fragmentContainer = fragment
-                val musicFragment = MusicFragment()
+                val fragmentContainer = fragment; val musicFragment = MusicFragment()
                 val bundle = Bundle()
 
                 bundle.putParcelable(SONG_DATA, mSongList[position])
                 musicFragment.arguments = bundle
-                mFragmentManager.beginTransaction().replace(R.id.fragment, musicFragment).commit()
                 view.isSelected = true
+                mFragmentManager.beginTransaction().replace(R.id.fragment, musicFragment).commit()
                 fragmentContainer.visibility = View.VISIBLE
             }
         }))

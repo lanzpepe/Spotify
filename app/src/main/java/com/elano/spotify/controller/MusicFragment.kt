@@ -14,6 +14,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_music.*
 import kotlinx.android.synthetic.main.fragment_music.view.*
 import java.io.IOException
@@ -47,6 +48,7 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         mHandler = Handler()
         mMediaPlayer = MediaPlayer()
         songProgressBar?.progressDrawable?.setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN)
+        songProgressBar?.setPadding(0, 0, 0, 0)
         songProgressBar?.progress = 0
         try {
             if (mMediaPlayer!!.isPlaying)
