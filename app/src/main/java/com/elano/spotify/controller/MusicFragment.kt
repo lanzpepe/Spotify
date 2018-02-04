@@ -14,7 +14,6 @@ import android.widget.SeekBar
 import android.widget.TextView
 import com.elano.spotify.R
 import com.elano.spotify.model.SongInfo
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_music.*
 import kotlinx.android.synthetic.main.fragment_music.view.*
 import java.io.IOException
@@ -22,8 +21,7 @@ import java.io.IOException
 /**
  * A simple [Fragment] subclass.
  */
-class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedListener,
-        MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
+class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
     private lateinit var mTvSongPlay: TextView
     private lateinit var mTvSingerPlay: TextView
@@ -34,7 +32,7 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
     private var songProgressBar: SeekBar? = null
 
     companion object {
-        const val UPDATE_FREQUENCY: Long = 100
+        const val UPDATE_FREQUENCY = 100L
         const val TAG = "MusicFragment"
     }
 
@@ -53,7 +51,7 @@ class MusicFragment : Fragment(), View.OnClickListener, MediaPlayer.OnPreparedLi
         try {
             if (mMediaPlayer!!.isPlaying)
                 mMediaPlayer?.reset()
-            mMediaPlayer?.setDataSource(song.data)
+            mMediaPlayer?.setDataSource(song.path)
             mMediaPlayer?.prepare()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()

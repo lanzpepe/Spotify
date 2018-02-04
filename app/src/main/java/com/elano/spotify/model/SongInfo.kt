@@ -7,10 +7,10 @@ import android.os.Parcelable
  * Created by Jess on 12/19/2017.
  */
 data class SongInfo (
-        var data: String,
         var name: String,
         var singer: String,
-        var album: String
+        var album: String,
+        var path: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -20,10 +20,10 @@ data class SongInfo (
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(data)
         parcel.writeString(name)
         parcel.writeString(singer)
         parcel.writeString(album)
+        parcel.writeString(path)
     }
 
     override fun describeContents(): Int {
