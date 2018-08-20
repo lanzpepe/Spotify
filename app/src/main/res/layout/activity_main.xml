@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context="com.elano.spotify.controller.MainActivity">
+    tools:context="com.elano.spotify.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"

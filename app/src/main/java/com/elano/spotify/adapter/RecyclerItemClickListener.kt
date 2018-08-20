@@ -1,4 +1,4 @@
-package com.elano.spotify.view
+package com.elano.spotify.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
